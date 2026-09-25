@@ -112,14 +112,31 @@ mostrarEquipes(equipes);
 
 }
 
-
 function mostrarSecao(secao) {
 
+  const secoes = {
+    jogos: "secao-jogos",
+    equipes: "secao-equipes"
+  };
+
+  const idSecao = secoes[secao];
+
+  if (idSecao) {
+    const elemento = document.getElementById(idSecao);
+
+    if (elemento) {
+      elemento.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+      return;
+    }
+  }
+
   const nomes = {
-    jogos: "Jogos",
     classificacao: "Classificação",
     "mata-mata": "Mata-mata",
-    equipes: "Equipes",
     artilharia: "Artilharia",
     cartoes: "Cartões / Disciplina",
     regulamento: "Regulamento"
@@ -131,7 +148,6 @@ function mostrarSecao(secao) {
     nome +
     "\n\nEsta área será conectada aos dados reais da Copa SB."
   );
-
 }
 
 
