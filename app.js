@@ -94,12 +94,13 @@ function calcularClassificacao(equipes, jogos) {
   jogos.forEach(jogo => {
 
     if (
-      jogo.status !== "final" ||
-      jogo.home_score === null ||
-      jogo.away_score === null
-    ) {
-      return;
-    }
+  jogo.phase !== "grupo" ||
+  jogo.status !== "final" ||
+  jogo.home_score === null ||
+  jogo.away_score === null
+) {
+  return;
+}
 
     const mandante = tabela[jogo.home_team_id];
     const visitante = tabela[jogo.away_team_id];
