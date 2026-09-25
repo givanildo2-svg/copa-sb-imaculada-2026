@@ -13,7 +13,38 @@ async function buscarEquipes() {
         headers: {
           apikey: SUPABASE_KEY,
           Authorization: `Bearer ${SUPABASE_KEY}`
+        }async function buscarJogos() {
+
+  try {
+
+    const resposta = await fetch(
+      `${SUPABASE_URL}/rest/v1/matches?select=*&order=match_no`,
+      {
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`
         }
+      }
+    );
+
+    if (!resposta.ok) {
+      throw new Error(`Erro HTTP ${resposta.status}`);
+    }
+
+    const jogos = await resposta.json();
+
+    console.log("JOGOS DO SUPABASE:", jogos);
+
+    return jogos;
+
+  } catch (erro) {
+
+    console.error("ERRO AO BUSCAR JOGOS:", erro);
+
+    return [];
+
+  }
+}
       }
     );
 
@@ -97,13 +128,57 @@ function mostrarEquipes(equipes) {
   });
 
   lista.innerHTML = html;
+} function mostrarJogos(jogos) {
+
+  const lista = document.getElementById("lista-jogos");
+  const secao = document.getElementById("secao-jogos");
+
+  if (!lista || !secao) {
+    return;
+  }
+
+  secao.style.display = "block";
+
+  if (jogos.length === 0) {
+    lista.innerHTML = "<p>Nenhum jogo cadastrado.</p>";
+    return;
+  }
+
+  let html = "";
+
+  jogos.forEach(jogo => {
+
+    html += `
+      <div class="jogo-item">
+
+        <strong>Jogo ${jogo.match_no}</strong>
+
+        <div>
+          ${jogo.home_team_id || "A definir"}
+          <strong> x </strong>
+          ${jogo.away_team_id || "A definir"}
+        </div>
+
+        <small>
+          ${jogo.match_date || "Data a definir"}
+          ${jogo.match_time || ""}
+        </small>
+
+      </div>
+    `;
+
+  });
+
+  lista.innerHTML = html;
 }
 async function iniciarAplicativo() {
 
   console.log("Conectando ao Supabase...");
 
   const equipes = await buscarEquipes();
-
+const jogos = await buscarJogos();
+mostrarJogos(jogos);
+console.log(`Conexão realizada. ${jogos.length} jogos encontrados.`);
   console.log(
   `Conexão realizada. ${equipes.length} equipes encontradas.`
 );
