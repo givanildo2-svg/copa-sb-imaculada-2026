@@ -3,18 +3,237 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Copa SB Imaculada Conceição de Futsal 2026</title>
+
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-  <h1>Copa SB Imaculada Conceição de Futsal 2026</h1>
+  <header class="topo">
+    <div class="logo-area">
+      <div class="logo-copa">🏆</div>
 
-  <p>Mais que um jogo, é a nossa paixão!</p>
+      <div>
+        <h1>Copa SB</h1>
+        <span>Imaculada Conceição</span>
+      </div>
+    </div>
 
-  <h2>Bem-vindo!</h2>
+    <button class="btn-admin" onclick="abrirAdmin()">
+      Administração
+    </button>
+  </header>
 
-  <p>Aplicativo oficial da Copa SB Imaculada Conceição de Futsal 2026.</p>
-<script src="app.js"></script>
+
+  <main>
+
+    <section class="hero">
+
+      <p class="categoria">FUTSAL • 2026</p>
+
+      <h2>
+        Copa SB Imaculada Conceição
+        <br>
+        de Futsal 2026
+      </h2>
+
+      <p>
+        Mais que um jogo, é a nossa paixão!
+      </p>
+
+    </section>
+
+
+    <section class="proximo-jogo card">
+
+      <div class="titulo-secao">
+        <h2>⚽ Próximo jogo</h2>
+        <span id="fase-proximo">FASE DE GRUPOS</span>
+      </div>
+
+      <div class="data-jogo">
+        <strong id="data-proximo">A definir</strong>
+        <span id="hora-proximo">A definir</span>
+      </div>
+
+      <div class="confronto">
+
+        <div class="time">
+          <div class="escudo">⚽</div>
+          <strong id="mandante">A definir</strong>
+        </div>
+
+        <div class="versus">
+          VS
+        </div>
+
+        <div class="time">
+          <div class="escudo">⚽</div>
+          <strong id="visitante">A definir</strong>
+        </div>
+
+      </div>
+
+      <div class="local">
+        📍 Ginásio Municipal Wamberto Torreão
+      </div>
+
+    </section>
+
+
+    <section class="resumo">
+
+      <div class="mini-card">
+        <span>🏟️</span>
+        <strong>15</strong>
+        <small>Equipes</small>
+      </div>
+
+      <div class="mini-card">
+        <span>⚽</span>
+        <strong>37</strong>
+        <small>Jogos</small>
+      </div>
+
+      <div class="mini-card">
+        <span>🏆</span>
+        <strong>8</strong>
+        <small>Classificados</small>
+      </div>
+
+    </section>
+
+
+    <section class="card">
+
+      <div class="titulo-secao">
+        <h2>📊 Classificação</h2>
+        <a href="#" onclick="mostrarSecao('classificacao')">
+          Ver tudo
+        </a>
+      </div>
+
+      <div id="classificacao-resumo">
+
+        <div class="linha-classificacao cabecalho">
+          <span>#</span>
+          <span>Equipe</span>
+          <span>Pts</span>
+        </div>
+
+        <div class="linha-classificacao">
+          <span>1</span>
+          <strong>RIVER SANTA LUZIA</strong>
+          <b>0</b>
+        </div>
+
+        <div class="linha-classificacao">
+          <span>2</span>
+          <strong>SÓ RESENHA</strong>
+          <b>0</b>
+        </div>
+
+        <div class="linha-classificacao">
+          <span>3</span>
+          <strong>PSV</strong>
+          <b>0</b>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="card">
+
+      <div class="titulo-secao">
+        <h2>🎯 Artilharia</h2>
+        <a href="#" onclick="mostrarSecao('artilharia')">
+          Ver tudo
+        </a>
+      </div>
+
+      <div class="artilheiro">
+
+        <div class="avatar">
+          ⚽
+        </div>
+
+        <div>
+          <strong>Aguardando jogos</strong>
+          <small>Artilharia da competição</small>
+        </div>
+
+        <b>0 gols</b>
+
+      </div>
+
+    </section>
+
+
+    <section class="menu-principal">
+
+      <button onclick="mostrarSecao('jogos')">
+        <span>⚽</span>
+        <strong>Jogos</strong>
+      </button>
+
+      <button onclick="mostrarSecao('classificacao')">
+        <span>📊</span>
+        <strong>Classificação</strong>
+      </button>
+
+      <button onclick="mostrarSecao('mata-mata')">
+        <span>🏆</span>
+        <strong>Mata-mata</strong>
+      </button>
+
+      <button onclick="mostrarSecao('equipes')">
+        <span>👥</span>
+        <strong>Equipes</strong>
+      </button>
+
+      <button onclick="mostrarSecao('artilharia')">
+        <span>🎯</span>
+        <strong>Artilharia</strong>
+      </button>
+
+      <button onclick="mostrarSecao('cartoes')">
+        <span>🟨</span>
+        <strong>Cartões</strong>
+      </button>
+
+      <button onclick="mostrarSecao('regulamento')">
+        <span>📖</span>
+        <strong>Regulamento</strong>
+      </button>
+
+      <button onclick="abrirAdmin()">
+        <span>🔐</span>
+        <strong>Administração</strong>
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+
+    <strong>Copa SB Imaculada Conceição de Futsal 2026</strong>
+
+    <p>
+      Secretaria de Desporto e Lazer
+      <br>
+      Prefeitura Municipal de Serra Branca
+    </p>
+
+  </footer>
+
+
+  <script src="app.js"></script>
+
 </body>
 </html>
