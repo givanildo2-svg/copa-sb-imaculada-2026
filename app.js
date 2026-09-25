@@ -2,7 +2,6 @@ const SUPABASE_URL = "https://uyblqxjozzqkhwcoxupl.supabase.co";
 
 const SUPABASE_KEY = "sb_publishable_uUVyLP5QekuF-jqmxNkOHg_xWNBfeX_";
 
-
 async function buscarEquipes() {
 
   try {
@@ -13,7 +12,31 @@ async function buscarEquipes() {
         headers: {
           apikey: SUPABASE_KEY,
           Authorization: `Bearer ${SUPABASE_KEY}`
-        }async function buscarJogos() {
+        }
+      }
+    );
+
+    if (!resposta.ok) {
+      throw new Error(`Erro HTTP ${resposta.status}`);
+    }
+
+    const equipes = await resposta.json();
+
+    console.log("EQUIPES DO SUPABASE:", equipes);
+
+    return equipes;
+
+  } catch (erro) {
+
+    console.error("ERRO AO CONECTAR AO SUPABASE:", erro);
+
+    return [];
+
+  }
+}
+
+
+async function buscarJogos() {
 
   try {
 
@@ -45,28 +68,6 @@ async function buscarEquipes() {
 
   }
 }
-      }
-    );
-
-    if (!resposta.ok) {
-      throw new Error(`Erro HTTP ${resposta.status}`);
-    }
-
-    const equipes = await resposta.json();
-
-    console.log("EQUIPES DO SUPABASE:", equipes);
-
-    return equipes;
-
-  } catch (erro) {
-
-    console.error("ERRO AO CONECTAR AO SUPABASE:", erro);
-
-    return [];
-
-  }
-}
-
 function mostrarEquipes(equipes) {
 
   const lista = document.getElementById("lista-equipes");
