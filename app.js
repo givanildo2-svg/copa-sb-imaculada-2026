@@ -67,7 +67,94 @@ async function buscarJogos() {
     return [];
 
   }
+} 
+
+function calcularClassificacao(equipes, jogos) {
+
+  const tabela = {};
+
+  equipes.forEach(equipe => {
+
+    tabela[equipe.id] = {
+      id: equipe.id,
+      nome: equipe.name,
+      grupo: equipe.group_code,
+      pontos: 0,
+      jogos: 0,
+      vitorias: 0,
+      empates: 0,
+      derrotas: 0,
+      golsPro: 0,
+      golsContra: 0,
+      saldo: 0
+    };
+
+  });
+
+  jogos.forEach(jogo => {
+
+    if (
+      jogo.status !== "final" ||
+      jogo.home_score === null ||
+      jogo.away_score === null
+    ) {
+      return;
+    }
+
+    const mandante = tabela[jogo.home_team_id];
+    const visitante = tabela[jogo.away_team_id];
+
+    if (!mandante || !visitante) {
+      return;
+    }
+
+    const golsMandante = Number(jogo.home_score);
+    const golsVisitante = Number(jogo.away_score);
+
+    mandante.jogos++;
+    visitante.jogos++;
+
+    mandante.golsPro += golsMandante;
+    mandante.golsContra += golsVisitante;
+
+    visitante.golsPro += golsVisitante;
+    visitante.golsContra += golsMandante;
+
+    if (golsMandante > golsVisitante) {
+
+      mandante.pontos += 3;
+      mandante.vitorias++;
+      visitante.derrotas++;
+
+    } else if (golsMandante < golsVisitante) {
+
+      visitante.pontos += 3;
+      visitante.vitorias++;
+      mandante.derrotas++;
+
+    } else {
+
+      mandante.pontos++;
+      visitante.pontos++;
+
+      mandante.empates++;
+      visitante.empates++;
+
+    }
+
+  });
+
+  Object.values(tabela).forEach(equipe => {
+
+    equipe.saldo =
+      equipe.golsPro - equipe.golsContra;
+
+  });
+
+  return Object.values(tabela);
+
 }
+
 function mostrarEquipes(equipes) {
 
   const lista = document.getElementById("lista-equipes");
@@ -198,9 +285,21 @@ console.log(`Conexão realizada. ${jogos.length} jogos encontrados.`);
 );
 
 mostrarEquipes(equipes);
+const classificacao = calcularClassificacao(equipes, jogos);
 
+console.log("CLASSIFICAÇÃO:", classificacao);
+  const resumo = document.getElementById("classificacao-resumo");
+
+if (resumo) {
+  resumo.innerHTML = classificacao.map((equipe, indice) => `
+    <div class="linha-classificacao">
+      <strong>${indice + 1}º</strong>
+      <span>${equipe.nome}</span>
+      <strong>${equipe.pontos} pts</strong>
+    </div>
+  `).join("");
 }
-
+}
 function mostrarSecao(secao) {
 
   const secoes = {
