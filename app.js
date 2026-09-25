@@ -104,9 +104,11 @@ async function iniciarAplicativo() {
 
   const equipes = await buscarEquipes();
 
-  console.log(mostrarEquipes(equipes);
-    `Conexão realizada. ${equipes.length} equipes encontradas.`
-  );
+  console.log(
+  `Conexão realizada. ${equipes.length} equipes encontradas.`
+);
+
+mostrarEquipes(equipes);
 
 }
 
