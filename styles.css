@@ -1,1 +1,414 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+:root {
+  --preto: #111111;
+  --preto-2: #1b1b1b;
+  --laranja: #f59e0b;
+  --dourado: #fbbf24;
+  --branco: #ffffff;
+  --cinza: #f4f4f4;
+  --cinza-texto: #777777;
+  --borda: #e8e8e8;
+  --verde: #16a34a;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cinza);
+  color: var(--preto);
+  min-height: 100vh;
+}
+
+.topo {
+  background: linear-gradient(135deg, #111111, #242424);
+  color: var(--branco);
+  padding: 18px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-copa {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--laranja);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.logo-area h1 {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.logo-area span {
+  color: #cccccc;
+  font-size: 12px;
+}
+
+.btn-admin {
+  border: 1px solid #555;
+  background: transparent;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-admin:hover {
+  background: #333;
+}
+
+main {
+  width: min(1100px, 94%);
+  margin: 25px auto 50px;
+}
+
+.hero {
+  background: linear-gradient(135deg, #111111, #292929);
+  color: white;
+  border-radius: 18px;
+  padding: 35px 30px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "⚽";
+  position: absolute;
+  right: 35px;
+  top: 25px;
+  font-size: 95px;
+  opacity: 0.08;
+}
+
+.categoria {
+  color: var(--laranja);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.hero h2 {
+  font-size: clamp(25px, 5vw, 42px);
+  line-height: 1.12;
+  max-width: 650px;
+}
+
+.hero p:last-child {
+  margin-top: 15px;
+  color: #dddddd;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.titulo-secao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 18px;
+}
+
+.titulo-secao h2 {
+  font-size: 19px;
+}
+
+.titulo-secao a {
+  color: #b45309;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.titulo-secao span {
+  background: #fff7ed;
+  color: #c2410c;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.data-jogo {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.data-jogo strong {
+  display: block;
+  font-size: 16px;
+}
+
+.data-jogo span {
+  display: block;
+  color: var(--cinza-texto);
+  margin-top: 5px;
+}
+
+.confronto {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+.time {
+  text-align: center;
+}
+
+.time strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.escudo {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  margin: auto;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 27px;
+}
+
+.versus {
+  text-align: center;
+  font-weight: bold;
+  color: #999;
+}
+
+.local {
+  text-align: center;
+  margin-top: 20px;
+  color: #777;
+  font-size: 13px;
+}
+
+.resumo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.mini-card {
+  background: white;
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  padding: 18px;
+  text-align: center;
+}
+
+.mini-card span {
+  display: block;
+  font-size: 23px;
+  margin-bottom: 8px;
+}
+
+.mini-card strong {
+  display: block;
+  font-size: 24px;
+}
+
+.mini-card small {
+  color: var(--cinza-texto);
+  font-size: 11px;
+}
+
+.linha-classificacao {
+  display: grid;
+  grid-template-columns: 35px 1fr 50px;
+  align-items: center;
+  padding: 13px 8px;
+  border-bottom: 1px solid #eeeeee;
+  font-size: 13px;
+}
+
+.linha-classificacao:last-child {
+  border-bottom: 0;
+}
+
+.linha-classificacao.cabecalho {
+  color: #999;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.linha-classificacao b {
+  text-align: right;
+}
+
+.artilheiro {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #fff7ed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.artilheiro strong,
+.artilheiro small {
+  display: block;
+}
+
+.artilheiro small {
+  margin-top: 4px;
+  color: #888;
+  font-size: 11px;
+}
+
+.artilheiro > b {
+  color: #b45309;
+  font-size: 13px;
+}
+
+.menu-principal {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.menu-principal button {
+  background: white;
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  padding: 20px 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.menu-principal button:hover {
+  transform: translateY(-2px);
+  border-color: var(--laranja);
+}
+
+.menu-principal span {
+  display: block;
+  font-size: 25px;
+  margin-bottom: 9px;
+}
+
+.menu-principal strong {
+  font-size: 12px;
+}
+
+footer {
+  background: #111111;
+  color: #aaa;
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 12px;
+}
+
+footer strong {
+  color: white;
+}
+
+footer p {
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  .topo {
+    padding: 15px;
+  }
+
+  .btn-admin {
+    font-size: 11px;
+    padding: 8px 10px;
+  }
+
+  main {
+    width: 94%;
+    margin-top: 15px;
+  }
+
+  .hero {
+    padding: 28px 22px;
+  }
+
+  .hero::after {
+    right: -5px;
+    font-size: 75px;
+  }
+
+  .resumo {
+    gap: 8px;
+  }
+
+  .mini-card {
+    padding: 14px 8px;
+  }
+
+  .mini-card strong {
+    font-size: 20px;
+  }
+
+  .menu-principal {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .confronto {
+    grid-template-columns: 1fr 50px 1fr;
+  }
+
+  .time strong {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 420px) {
+  .logo-area h1 {
+    font-size: 18px;
+  }
+
+  .logo-area span {
+    font-size: 10px;
+  }
+
+  .hero h2 {
+    font-size: 25px;
+  }
+
+  .titulo-secao h2 {
+    font-size: 16px;
+  }
+}
