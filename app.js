@@ -156,7 +156,10 @@ equipes.forEach(equipe => {
     html += `
       <div class="jogo-item">
 
-        <strong>Jogo ${jogo.match_no}</strong>
+        <strong>
+  Jogo ${jogo.match_no}
+  ${jogo.group_code ? ` — Grupo ${jogo.group_code}` : ""}
+</strong>
 
         <div>
          ${nomesEquipes[jogo.home_team_id] || "A definir"}
@@ -164,12 +167,14 @@ equipes.forEach(equipe => {
 ${nomesEquipes[jogo.away_team_id] || "A definir"}
         </div>
 
-        <small>
-          ${jogo.match_date || "Data a definir"}
-          ${jogo.match_time || ""}
-        </small>
-
-      </div>
+       <small>
+  📅 ${jogo.match_date || "Data a definir"}
+  ${jogo.match_time ? ` — ⏰ ${jogo.match_time}` : ""}
+  ${jogo.venue ? `<br>📍 ${jogo.venue}` : ""}
+</small>
+<div class="status-jogo">
+  ${jogo.status === "final" ? "FINALIZADO" : "PREVISTO"}
+</div>
     `;
 
   });
