@@ -36,14 +36,75 @@ async function buscarEquipes() {
   }
 }
 
+function mostrarEquipes(equipes) {
 
+  const lista = document.getElementById("lista-equipes");
+  const secao = document.getElementById("secao-equipes");
+
+  if (!lista || !secao) {
+    return;
+  }
+
+  secao.style.display = "block";
+
+  if (equipes.length === 0) {
+    lista.innerHTML = "<p>Nenhuma equipe encontrada.</p>";
+    return;
+  }
+
+  const grupos = {
+    A: [],
+    B: [],
+    C: []
+  };
+
+  equipes.forEach(equipe => {
+    if (grupos[equipe.group_code]) {
+      grupos[equipe.group_code].push(equipe);
+    }
+  });
+
+  let html = "";
+
+  Object.keys(grupos).forEach(grupo => {
+
+    html += `
+      <div class="grupo-equipes">
+        <h3>Grupo ${grupo}</h3>
+    `;
+
+    grupos[grupo].forEach((equipe, indice) => {
+
+      html += `
+        <div class="equipe-item">
+          <div class="numero-equipe">
+            ${indice + 1}
+          </div>
+
+          <div>
+            <strong>${equipe.name}</strong>
+            <small>Grupo ${equipe.group_code}</small>
+          </div>
+        </div>
+      `;
+
+    });
+
+    html += `
+      </div>
+    `;
+
+  });
+
+  lista.innerHTML = html;
+}
 async function iniciarAplicativo() {
 
   console.log("Conectando ao Supabase...");
 
   const equipes = await buscarEquipes();
 
-  console.log(
+  console.log(mostrarEquipes(equipes);
     `Conexão realizada. ${equipes.length} equipes encontradas.`
   );
 
