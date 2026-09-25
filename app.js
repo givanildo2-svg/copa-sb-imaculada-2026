@@ -125,6 +125,8 @@ function mostrarSecao(secao) {
     const elemento = document.getElementById(idSecao);
 
     if (elemento) {
+      elemento.style.display = "block";
+
       elemento.scrollIntoView({
         behavior: "smooth",
         block: "start"
