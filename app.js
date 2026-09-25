@@ -129,7 +129,7 @@ function mostrarEquipes(equipes) {
   });
 
   lista.innerHTML = html;
-} function mostrarJogos(jogos) {
+} function mostrarJogos(jogos, equipes) {
 
   const lista = document.getElementById("lista-jogos");
   const secao = document.getElementById("secao-jogos");
@@ -146,7 +146,11 @@ function mostrarEquipes(equipes) {
   }
 
   let html = "";
+const nomesEquipes = {};
 
+equipes.forEach(equipe => {
+  nomesEquipes[equipe.id] = equipe.name;
+});
   jogos.forEach(jogo => {
 
     html += `
@@ -155,9 +159,9 @@ function mostrarEquipes(equipes) {
         <strong>Jogo ${jogo.match_no}</strong>
 
         <div>
-          ${jogo.home_team_id || "A definir"}
-          <strong> x </strong>
-          ${jogo.away_team_id || "A definir"}
+         ${nomesEquipes[jogo.home_team_id] || "A definir"}
+<strong> x </strong>
+${nomesEquipes[jogo.away_team_id] || "A definir"}
         </div>
 
         <small>
@@ -178,7 +182,7 @@ async function iniciarAplicativo() {
 
   const equipes = await buscarEquipes();
 const jogos = await buscarJogos();
-mostrarJogos(jogos);
+mostrarJogos(jogos, equipes);
 console.log(`Conexão realizada. ${jogos.length} jogos encontrados.`);
   console.log(
   `Conexão realizada. ${equipes.length} equipes encontradas.`
