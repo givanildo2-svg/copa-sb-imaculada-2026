@@ -173,7 +173,11 @@ ${nomesEquipes[jogo.away_team_id] || "A definir"}
   ${jogo.venue ? `<br>📍 ${jogo.venue}` : ""}
 </small>
 <div class="status-jogo">
-  ${jogo.status === "final" ? "FINALIZADO" : "PREVISTO"}
+  ${
+    jogo.status === "final"
+      ? `FINAL — ${jogo.home_score ?? 0} x ${jogo.away_score ?? 0}`
+      : "PREVISTO"
+  }
 </div>
     `;
 
