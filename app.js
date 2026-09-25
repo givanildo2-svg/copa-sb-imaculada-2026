@@ -146,12 +146,20 @@ function calcularClassificacao(equipes, jogos) {
 
   Object.values(tabela).forEach(equipe => {
 
-    equipe.saldo =
-      equipe.golsPro - equipe.golsContra;
+  equipe.saldo =
+    equipe.golsPro - equipe.golsContra;
 
-  });
+});
 
-  return Object.values(tabela);
+return Object.values(tabela).sort((a, b) => {
+
+  if (b.pontos !== a.pontos) {
+    return b.pontos - a.pontos;
+  }
+
+  return b.saldo - a.saldo;
+
+});
 
 }
 
